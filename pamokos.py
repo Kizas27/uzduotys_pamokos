@@ -9,3 +9,7 @@ print(suma(5, 6))
 
 #is github
 print("is github")
+
+
+# taip sukuriamas exception
+raise Exception("kazkas yvyko (error)")
