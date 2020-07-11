@@ -17,3 +17,7 @@ print("is github")
 # pasiekti listo pirma elementa my_list[0]
 my_list =["labas"]
 print(my_list[0])
+
+#funkcijos kurimas
+def name():
+    print()
