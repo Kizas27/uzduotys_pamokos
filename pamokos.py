@@ -12,4 +12,8 @@ print("is github")
 
 
 # taip sukuriamas exception
-raise Exception("kazkas yvyko (error)")
+#raise Exception("kazkas yvyko (error)")
+
+# pasiekti listo pirma elementa my_list[0]
+my_list =["labas"]
+print(my_list[0])
