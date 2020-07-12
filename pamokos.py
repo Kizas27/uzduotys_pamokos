@@ -80,3 +80,76 @@ l.warning("warning logas 30")
 l.info("info logas 20")
 l.debug("debug logas 10")
 '''
+
+#class kurimas
+
+class Car:
+    model = ""
+    price = 0.0
+    year = 0
+
+    def __init__(self, model, price, year):
+        self.model = model
+        self.price = price
+        self.year = year
+    def __str__(self):
+        return (f"{self.brand}: {self.model} year: {self.year} price: {self.price}")
+
+#subclass kurimas
+class Audi(Car):
+    brand = "Audi"
+    def __init__(self, model, price, year):
+        super().__init__(model, price, year)
+
+#car =Audi("a6", 1000.00, 1999)
+#print(car)
+
+#dekoratoriaus kurimas per class
+class HTMLHeader:
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(self, *args, **kwargs):
+        result = self.func(*args, **kwargs)
+        return f"<h1>{result}</h1>"
+
+
+@HTMLHeader
+def prepare_title(title_string):
+    return title_string.title() # .title() padaro kiekviena zody is didziosios raides
+
+
+if __name__ == "__main__":
+    print(prepare_title("this is a section title!"))
+
+# dekoratorius per classe su functtools
+
+import functools
+
+
+class Multiply:
+    def __init__(self, multiplier):
+        self.multiplier = multiplier
+
+    def __call__(self, func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+            return result * self.multiplier  #is funcijos(double_addition) paimtas atsakymas ir atliekama dekoratoriuje daugyba
+
+        return wrapper
+
+
+@Multiply(2)
+def double_addition(a, b):
+    return a + b
+
+
+@Multiply(3)
+def triple_addition(a, b):
+    return a + b
+
+
+if __name__ == "__main__":
+    print(double_addition(2, 2))
+    print(triple_addition(1, 1))
