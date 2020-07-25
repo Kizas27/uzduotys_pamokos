@@ -307,6 +307,35 @@ def dekoratorius_su_functools():
     print(double_addition(2, 2))
     print(triple_addition(1, 1))
 
+def recursion(k):
+    if len(k) == 1:
+        return k[0]
+    return k[0] + recursion(k[::1])
+
+def threadingai():
+    import threading
+    import time
+    def procesingas(car):
+        print(f"procesas prasidejo su automobiliu {car}")
+        time.sleep(2)
+        print(f"Procesas pasibaige su automobiliu {car}")
+
+    cars = ["Audi", "Bmw", "Seat"]
+    threads = []
+    start_time = time.time()
+    for car in cars:
+        new_threads = threading.Thread(target=procesingas, args=(car,))
+        threads.append(new_threads)
+        new_threads.start()
+    for t in threads:
+        t.join()
+    delta_time = time.time() - start_time
+    print(f"uztruko trhedingas: {delta_time}")
+
+
+def multiproc():
+    import pool_multiprocessing
+    pool_multiprocessing.saukiam()
 
 if __name__ == "__main__":
     print("printas y console:")
@@ -340,4 +369,13 @@ if __name__ == "__main__":
     print("Dekoratorius su functools:")
     dekoratorius_su_functools()
     print()
-
+    print("Recursijos(kai funkcija saukia save):")
+    listukas = [2, 5, 1, 3, 1]
+    recursion(listukas)
+    print()
+    print("thredingas:")
+    threadingai()
+    print()
+    print("Multiprocesingas:")
+    multiproc()
+    print()
